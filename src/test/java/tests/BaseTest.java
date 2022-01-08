@@ -1,13 +1,11 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import steps.SearchSteps;
-import utils.Browser;
 import utils.DriverFactory;
+import utils.PropertyReader;
 
-import java.io.File;
 
 public abstract class BaseTest {
 
@@ -23,8 +21,8 @@ public abstract class BaseTest {
     @BeforeClass
     public void setUp()  {
 
-        driver = DriverFactory.getDriver(Browser.IE);
-        driver.get("https://www.google.com/");
+        driver = DriverFactory.getDriver(PropertyReader.getBrowser());
+        driver.get(PropertyReader.getUrl());
         steps = new SearchSteps();
     }
 
