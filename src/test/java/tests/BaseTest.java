@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import steps.SearchSteps;
+import utils.Browser;
+import utils.DriverFactory;
 
 import java.io.File;
 
@@ -19,12 +21,10 @@ public abstract class BaseTest {
     }
 
     @BeforeClass
-    public void setUp() throws InterruptedException {
-        File file = new File("src/test/resources/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-        driver = new ChromeDriver();
+    public void setUp()  {
+
+        driver = DriverFactory.getDriver(Browser.IE);
         driver.get("https://www.google.com/");
-        driver.manage().window().maximize();
         steps = new SearchSteps();
     }
 
